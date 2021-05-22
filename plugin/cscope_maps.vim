@@ -43,6 +43,11 @@ if has("cscope")
     " else add the database pointed to by environment variable 
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
+    else
+      let csfile = $HOME . "/.cscope" . $PWD . "/cscope.out"
+      if filereadable(csfile)
+        exe "cs add" csfile
+      endif
     endif
 
     " show msg when any other cscope db added
